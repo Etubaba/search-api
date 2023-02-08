@@ -3,7 +3,7 @@ import searchReducer from "./searchSlice";
 
 export const store = configureStore({
   reducer: {
-    note: searchReducer,
+    search: searchReducer,
   },
 });
 
