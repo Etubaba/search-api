@@ -4,9 +4,9 @@ import MenuIcon from "../public/icons/Menu.svg";
 import style from "../styles/Result.module.css";
 import { useState } from "react";
 import ProductToggle from "../components/ProductToggle";
+import ProductComponent from "../components/ProductComponent";
 
 export default function Home(): JSX.Element {
-  const [active, setActive] = useState("trendy");
   return (
     <div className={style.page_1}>
       <div className={style.header}>
@@ -15,8 +15,16 @@ export default function Home(): JSX.Element {
       </div>
 
       <h1 className={style.title}>Find your favorite products now.</h1>
+      <div>
+        <ProductToggle />
+      </div>
 
-      <ProductToggle/>
+
+      <div>
+          <ProductComponent />
+      </div>
+
+    
     </div>
   );
 }
