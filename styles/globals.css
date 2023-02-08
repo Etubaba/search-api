@@ -1,1 +1,47 @@
 
+ * {
+       border: 0;
+       margin: 0;
+   }
+
+
+   .search{
+border-radius: 5rem;
+border-width: 1px;
+margin-left: 4rem;
+border: 1px solid   rgb(207, 205, 205);
+display: flex;
+width:100%;
+padding: 0.7rem;
+}
+
+
+.search input{
+    background-color: #FCFCFF;
+    width: 100%;
+    padding: 4px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    font-size: 400;
+}
+
+
+.search-icon{
+    margin-right: 0.5rem;
+    
+    height: 24px;
+    width: 24px;
+}
+
+.nav-icon{
+   margin-right: 5rem; 
+   height: 14.67px;
+   width: 22px;
+}
+
+.space-x-2> :not([hidden])~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+   
+}

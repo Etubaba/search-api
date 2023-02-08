@@ -1,0 +1,56 @@
+
+.page_1{
+    background-color: #FCFCFF;
+    height: 100vh;
+    padding:  30px 20px 30px 20px;
+}
+
+
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.title{
+    color:#1b153d;
+    font-size: 35px;
+}
+
+.product_toggle{
+    display: flex;
+    
+   
+    margin-top: 2rem;
+}
+.products_toggle {
+    margin-right: 15px;
+    font-size: 16px;
+    font-weight: 500;
+   line-height: 24px;
+   color: #9095A6A6;
+}
+.toggle_active{
+    margin-right: 15px;
+    font-size: 16px;
+    font-weight: 500;
+   line-height: 24px;
+   color:  #17A030;
+  
+ 
+}
+
+.border{
+   
+    height: 8px;
+    width: 38px;
+    display: block;
+ 
+    margin:  auto 4px;/* For vertical spacing */
+    border-bottom: 2px solid #17A030;
+   
+  
+}
