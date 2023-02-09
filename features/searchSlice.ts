@@ -4,6 +4,7 @@ import { IInitialState } from "@/interface";
 
 const initialState: IInitialState = {
   search: "",
+  is_searching: false,
 };
 
 const searchSlice = createSlice({
@@ -13,9 +14,15 @@ const searchSlice = createSlice({
     handleSearch: (state: IInitialState, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
+    handleSearchingState: (
+      state: IInitialState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.is_searching = action.payload;
+    },
   },
 });
 
-export const { handleSearch } = searchSlice.actions;
+export const { handleSearch, handleSearchingState } = searchSlice.actions;
 
 export default searchSlice.reducer;
