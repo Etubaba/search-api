@@ -4,3 +4,6 @@ export interface IInitialState {
 
   //   productId: string | null;
 }
+export type apiData = {
+  text: string;
+};

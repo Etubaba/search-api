@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { IInitialState } from "@/interface";
+import Cookies from "js-cookie";
 
 const initialState: IInitialState = {
   search: "",

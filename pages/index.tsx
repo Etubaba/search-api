@@ -14,7 +14,7 @@ import { GetServerSideProps } from "next";
 
 
 export default function Home(): JSX.Element {
-  const searchContent: string = useSelector(
+  const searchContent: string  = useSelector(
     (state: RootState) => state.search.search
   );
   const is_searching: boolean = useSelector(
@@ -44,29 +44,24 @@ export default function Home(): JSX.Element {
   );
 }
 
-// export const getServerSideProps:GetServerSideProps= async(context)=>{
+export const getServerSideProps:GetServerSideProps= async(context)=>{
 
 
-//   const token = context.req.cookies.adminAccessToken || "";
+  const search = context.req.cookies.search || "";
 
-//   const queryData={
-//   slug:"/kategori",
-//   query:{
-//     q:"egg"
-//   }
-// }
-//   const res = await fetch(`${BASE_URL}slug`, {
-//     method:'POST',
+  // const queryData={
+  // slug:"/kategori",
+  // query:{
+  //   q:"egg"
+  // }
+//}
+  const res = await fetch(`${BASE_URL}autocomplete?query=${search}`);
 
-//     // body:queryData
-   
-//   });
+  const data = await res.json();
 
-//   const data = await res.json();
-
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
+  return {
+    props: {
+      data,
+    },
+  };
+}

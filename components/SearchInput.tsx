@@ -25,7 +25,7 @@ const SearchInput = (): JSX.Element => {
       ) {
 
         const prevHistory = JSON.parse(localStorage.getItem("history") || '');
-       console.log('prevHistory', prevHistory);
+      
 
         const updatedHistory = [...prevHistory,searchContent];
 
