@@ -112,12 +112,27 @@ padding: 10px;
     color: #17A030;
 }
 
+
 .product_container{
+    display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 1.25rem;
+        place-content: center;
+        
+}
+
+
+@media only screen and (max-width: 450px) {
+    .product_container{
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
     place-content: center;
+  
 }
+}
+
+
 
 
 

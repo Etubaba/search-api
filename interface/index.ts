@@ -20,6 +20,6 @@ export interface IDataProps {
   data: Product[];
 }
 
-export interface ProjectComponentProps {
+export interface ProductComponentProps {
   product: Product;
 }

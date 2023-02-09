@@ -26,17 +26,26 @@ const Suggetions = () => {
 
   const suggestions: apiData[] = fetchData.suggestions;
 
-  //refresh serverside fetching
+  //refresh fetching
   const refreshData = () => {
     router.replace(router.asPath);
   };
 
-  //clear recentlySearch
+  //clear recentSearch
   const clearStorage = () => {
     if (typeof window !== "undefined") {
       localStorage.clear();
       refreshData();
     }
+  };
+
+  //handle suggestion click
+
+  const handleSuggestionClicked = (params: string) => {
+    router.push({
+      pathname: "/results",
+      query: params,
+    });
   };
 
   return (
@@ -52,17 +61,23 @@ const Suggetions = () => {
         <>
           {suggestions.map((item, idx) => (
             <div key={idx} className={style.suggestion_items}>
-              <p>{item.text}</p>
-              <Image className="dropdown-icon" alt="" src={CloseIcon} />
+              <p onClick={() => handleSuggestionClicked(item.text)}>
+                {item.text}
+              </p>
+              <Image className="dropdown-icon" alt="" src={SearchIcon} />
             </div>
           ))}
         </>
       ) : (
         <>
           {recentlySearch.map((item: string, idx: number) => (
-            <div key={idx} className={style.suggestion_items}>
+            <div
+              onClick={() => handleSuggestionClicked(item)}
+              key={idx}
+              className={style.suggestion_items}
+            >
               <p>{item}</p>
-              <Image className="dropdown-icon" alt="" src={SearchIcon} />
+              <Image className="dropdown-icon" alt="" src={CloseIcon} />
             </div>
           ))}
         </>

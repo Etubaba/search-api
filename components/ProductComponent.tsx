@@ -1,9 +1,9 @@
-import { ProjectComponentProps } from "@/interface";
+import { ProductComponentProps } from "@/interface";
 import Image from "next/image";
 import React from "react";
 // import coke from "../public/coke.png";
 
-const ProductComponent: React.FC<ProjectComponentProps> = ({ product }) => {
+const ProductComponent: React.FC<ProductComponentProps> = ({ product }) => {
   const { imageUrl, name, brand, price } = product;
   return (
     <div className="product">

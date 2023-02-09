@@ -5,21 +5,39 @@ import { getAllProducts } from "@/services/api";
 import MenuIcon from "../public/icons/Menu.svg";
 import ProductComponent from "@/components/ProductComponent";
 import style from "../styles/Result.module.css";
+import CloseIcon from "../public/icons/Close.svg";
 import { IDataProps } from "@/interface";
 import Image from "next/image";
 import SearchInput from "@/components/SearchInput";
-import { RootState } from "@/features/store";
-import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/features/store";
+import { useDispatch, useSelector } from "react-redux";
+import { NextRouter, useRouter } from "next/router";
+import { handleSearch, handleSearchingState } from "../features/searchSlice";
 
 const Results: React.FC<IDataProps> = ({ data }) => {
+  const router: NextRouter = useRouter();
+  const dispatch: AppDispatch = useDispatch();
   const is_searching: boolean = useSelector(
     (state: RootState) => state.search.is_searching
   );
+
+  const handleReturnHome = () => {
+    dispatch(handleSearch(""));
+    dispatch(handleSearchingState(false));
+    router.push("/");
+  };
   return (
-    <>
+    <div className={style.result_container}>
       <Head>
         <title>Results</title>
       </Head>
+
+      <Image
+        onClick={handleReturnHome}
+        className="menu-icon"
+        alt=""
+        src={CloseIcon}
+      />
 
       <div className={style.header}>
         {!is_searching && <Image className="menu-icon" alt="" src={MenuIcon} />}
@@ -33,7 +51,7 @@ const Results: React.FC<IDataProps> = ({ data }) => {
           ))}
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

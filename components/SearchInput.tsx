@@ -5,6 +5,7 @@ import SearchIcon from "../public/icons/Search.svg";
 import { AppDispatch, RootState } from "../features/store";
 import { useDispatch } from "react-redux";
 import { handleSearch, handleSearchingState } from "../features/searchSlice";
+import { NextRouter, useRouter } from "next/router";
 
 const SearchInput = (): JSX.Element => {
   const searchContent = useSelector((state: RootState) => state.search.search);
@@ -12,22 +13,20 @@ const SearchInput = (): JSX.Element => {
     (state: RootState) => state.search.is_searching
   );
   const dispatch: AppDispatch = useDispatch();
+  const router: NextRouter = useRouter();
 
   const handleRecentSearch = () => {
     if (searchContent === "") return;
 
     //check for window object
     if (typeof window !== "undefined") {
-      
       if (
         localStorage.getItem("history") !== null &&
         localStorage.getItem("history") !== undefined
       ) {
+        const prevHistory = JSON.parse(localStorage.getItem("history") || "");
 
-        const prevHistory = JSON.parse(localStorage.getItem("history") || '');
-      
-
-        const updatedHistory = [...prevHistory,searchContent];
+        const updatedHistory = [...prevHistory, searchContent];
 
         localStorage.setItem("history", JSON.stringify(updatedHistory));
       } else {
@@ -36,8 +35,22 @@ const SearchInput = (): JSX.Element => {
     }
   };
 
+  const handleSearchContent = (evt: React.KeyboardEvent<HTMLDivElement>) => {
+    if (evt.key === "Enter") {
+      router.push({
+        pathname: "/results",
+        query: searchContent,
+      });
+    }
+  };
+
   return (
-    <div className={!is_searching ? "search" : "searching"}>
+    <div
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
+        handleSearchContent(e)
+      }
+      className={!is_searching ? "search" : "searching"}
+    >
       <Image className="search-icon" alt="" src={SearchIcon} />
       <input
         onFocus={() => dispatch(handleSearchingState(true))}

@@ -3,12 +3,22 @@
     background-color: #FCFCFF;
     height: 100vh;
     padding:  24px 16px 24px 16px;
+    margin-bottom: 8rem;
 }
 
 .page_container{
     background-color: #FFFF;
     height: 100vh;
     padding:  16px 12px 16px 12px;
+    margin-bottom: 8rem;
+}
+
+.result_container{
+    background-color: #FCFCFF;
+        height: auto;
+        padding: 24px 16px 24px 16px;
+        margin-bottom: 8rem;
+    
 }
 
 
