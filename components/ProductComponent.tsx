@@ -1,24 +1,33 @@
-import Image from 'next/image'
-import React from 'react'
-import coke from "../public/coke.png";
+import { ProjectComponentProps } from "@/interface";
+import Image from "next/image";
+import React from "react";
+// import coke from "../public/coke.png";
 
-
-const ProductComponent = () => {
+const ProductComponent: React.FC<ProjectComponentProps> = ({ product }) => {
+  const { imageUrl, name, brand, price } = product;
   return (
-    <div className='product'>
-        <div className='img'>
-            <Image src={coke} alt=''/> 
-        </div>
-     
+    <div className="product">
+      <div className="img">
+        <Image
+          style={{ objectFit: "contain" }}
+          width={60}
+          height={70}
+          sizes="(max-height: 98px)"
+          src={imageUrl}
+          alt="product"
+          priority
+        />
+      </div>
+
       <div>
-        <p className='product_name'>Product name</p>
+        <p className="product_name">{name}</p>
 
-        <p className='product_brand'>Brand</p>
+        <p className="product_brand">{brand}</p>
 
-        <p className='product_price'>$785</p>
+        <p className="product_price">${price}</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductComponent
+export default ProductComponent;

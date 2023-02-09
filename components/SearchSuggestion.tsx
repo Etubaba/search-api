@@ -6,11 +6,14 @@ import style from "../styles/Suggest.module.css";
 import SearchIcon from "../public/icons/Search.svg";
 import CloseIcon from "../public/icons/Close.svg";
 import useFetch from "@/hooks/useFetch";
-import { BASE_URL } from "@/api";
+import { BASE_URL } from "@/constant";
 import { apiData } from "@/interface";
+import { useRouter } from "next/router";
 
 const Suggetions = () => {
   const searchContent = useSelector((state: RootState) => state.search.search);
+
+  const router = useRouter();
 
   const recentlySearch =
     typeof window !== "undefined"
@@ -23,9 +26,16 @@ const Suggetions = () => {
 
   const suggestions: apiData[] = fetchData.suggestions;
 
+  //refresh serverside fetching
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
+  //clear recentlySearch
   const clearStorage = () => {
     if (typeof window !== "undefined") {
       localStorage.clear();
+      refreshData();
     }
   };
 

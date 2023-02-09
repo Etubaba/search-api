@@ -1,9 +1,9 @@
-import { BASE_URL } from "@/api";
+import { BASE_URL } from "../../constant";
 import axios from "axios";
 
 const search = async (req: any, res: any) => {
   const { search } = req.body;
-  const url = `${BASE_URL}autocomplete?query=${search}`;
+  const url = `${BASE_URL}/autocomplete?query=${search}`;
   try {
     const { data } = await axios.get(url);
 

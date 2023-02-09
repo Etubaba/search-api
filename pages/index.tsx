@@ -8,20 +8,21 @@ import ProductComponent from "../components/ProductComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "@/features/store";
 import Suggetions from "@/components/SearchSuggestion";
-import { BASE_URL } from "@/api";
+
 import { GetServerSideProps } from "next";
 
+import { getAllProducts } from "@/services/api";
+import { IDataProps } from "@/interface";
 
-
-export default function Home(): JSX.Element {
-  const searchContent: string  = useSelector(
+export default function Home({ data }: IDataProps): JSX.Element {
+  const searchContent: string = useSelector(
     (state: RootState) => state.search.search
   );
   const is_searching: boolean = useSelector(
     (state: RootState) => state.search.is_searching
   );
   return (
-    <div className={is_searching ? style.page_container:style.page_1}>
+    <div className={is_searching ? style.page_container : style.page_1}>
       <div className={style.header}>
         {!is_searching && <Image className="menu-icon" alt="" src={MenuIcon} />}
         <SearchInput />
@@ -35,8 +36,10 @@ export default function Home(): JSX.Element {
             <ProductToggle />
           </div>
 
-          <div>
-            <ProductComponent />
+          <div className="product_container">
+            {data.map((product) => (
+              <ProductComponent key={product.id} product={product} />
+            ))}
           </div>
         </div>
       )}
@@ -44,24 +47,58 @@ export default function Home(): JSX.Element {
   );
 }
 
-export const getServerSideProps:GetServerSideProps= async(context)=>{
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  if (!query) {
+    return {
+      props: {
+        result: [],
+      },
+    };
+  }
 
+  try {
+    const url = Object.keys(query)[0];
+    const data = await getAllProducts(url);
+    // const searchSuggestion = await getRecentSearch("");
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        result: [],
+        searchSuggestion: [],
+      },
+    };
+  }
+};
 
-  const search = context.req.cookies.search || "";
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const search = context.req.cookies.products || "egg";
 
-  // const queryData={
-  // slug:"/kategori",
-  // query:{
-  //   q:"egg"
-  // }
-//}
-  const res = await fetch(`${BASE_URL}autocomplete?query=${search}`);
+//   const queryData = {
+//     slug: "/kategori",
+//     query: {
+//       q: search,
+//     },
+//   };
+//   //@ts-ignore
+//   const { data } = await axios.post(`${BASE_URL}slug`, queryData);
 
-  const data = await res.json();
+//   // const res = await fetch(`${BASE_URL}slug`, {
+//   //   method: "POST",
+//   //   body: JSON.stringify(queryData),
+//   // });
 
-  return {
-    props: {
-      data,
-    },
-  };
-}
+//   // const data = await res.json();
+
+//   console.log("is it coming", data);
+
+//   return {
+//     props: {
+//       data: data || {},
+//     },
+//   };
+// };
