@@ -1,22 +1,45 @@
 .suggestion_container {
   background-color: white;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .suggest {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 6px;
 }
 
 .suggest p {
   color: rgba(144, 149, 166, 0.65);
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 13px;
   line-height: 22px;
 }
-.suggest p:last-child:hover{
+/* .suggest p:last-child:hover{
 color: rgba(144, 149, 166, 0.45);
+} */
+
+.divider {
+  height: 8px;
+
+  display: block;
+  margin: auto 4px;
+  /* For vertical spacing */
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.suggestion_items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.suggestion_items p {
+  color: #1b153d;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.03em;
 }

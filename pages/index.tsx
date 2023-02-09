@@ -8,6 +8,10 @@ import ProductComponent from "../components/ProductComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "@/features/store";
 import Suggetions from "@/components/SearchSuggestion";
+import { BASE_URL } from "@/api";
+import { GetServerSideProps } from "next";
+
+
 
 export default function Home(): JSX.Element {
   const searchContent: string = useSelector(
@@ -39,3 +43,30 @@ export default function Home(): JSX.Element {
     </div>
   );
 }
+
+// export const getServerSideProps:GetServerSideProps= async(context)=>{
+
+
+//   const token = context.req.cookies.adminAccessToken || "";
+
+//   const queryData={
+//   slug:"/kategori",
+//   query:{
+//     q:"egg"
+//   }
+// }
+//   const res = await fetch(`${BASE_URL}slug`, {
+//     method:'POST',
+
+//     // body:queryData
+   
+//   });
+
+//   const data = await res.json();
+
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// }
