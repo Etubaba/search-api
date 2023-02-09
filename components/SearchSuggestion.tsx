@@ -30,7 +30,6 @@ const Suggetions = () => {
       const holder =
         selectedIdx !== 0 ? selectedIdx - 1 : suggestions.length - 1;
       setSelectedidx(holder);
-      console.log("arrowUpPressed");
     }
   }, [arrowUpPressed]);
 
@@ -39,7 +38,6 @@ const Suggetions = () => {
       const holder =
         selectedIdx !== suggestions.length - 1 ? selectedIdx + 1 : 0;
       setSelectedidx(holder);
-      console.log("arrowDownPressed");
     }
   }, [arrowDownPressed]);
 

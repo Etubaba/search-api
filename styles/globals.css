@@ -110,6 +110,7 @@ padding: 10px;
     line-height: 19px;
     letter-spacing: -0.24px;
     color: #17A030;
+    align-self: flex-end;
 }
 
 
