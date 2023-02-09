@@ -31,13 +31,14 @@ const Results: React.FC<IDataProps> = ({ data }) => {
       <Head>
         <title>Results</title>
       </Head>
-
-      <Image
-        onClick={handleReturnHome}
-        className="menu-icon"
-        alt=""
-        src={CloseIcon}
-      />
+      <div className={style.goback}>
+        <Image
+          onClick={handleReturnHome}
+          className="menu-icon"
+          alt=""
+          src={CloseIcon}
+        />
+      </div>
 
       <div className={style.header}>
         {!is_searching && <Image className="menu-icon" alt="" src={MenuIcon} />}

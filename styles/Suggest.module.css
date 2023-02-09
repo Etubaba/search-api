@@ -37,9 +37,15 @@ color: rgba(144, 149, 166, 0.45);
   margin-top: 10px;
 }
 
-.suggestion_items p {
+.suggestion_item {
   color: #1b153d;
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0.03em;
+}
+.suggestion_active{
+  font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.03em;
+    color:#17A030
 }

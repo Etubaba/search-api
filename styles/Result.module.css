@@ -69,3 +69,10 @@
     border-bottom: 2px solid #17A030;
    
 }
+
+.goback{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 1rem;
+}

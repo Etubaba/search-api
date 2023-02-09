@@ -9,11 +9,39 @@ import useFetch from "@/hooks/useFetch";
 import { BASE_URL } from "@/constant";
 import { apiData } from "@/interface";
 import { useRouter } from "next/router";
+import useKeyPress from "@/hooks/userKeyPress";
 
 const Suggetions = () => {
   const searchContent = useSelector((state: RootState) => state.search.search);
-
   const router = useRouter();
+
+  const { fetchData, loading } = useFetch(`api/suggestion`, searchContent);
+
+  const suggestions: apiData[] = fetchData.suggestions;
+
+  //logic for arrow selection
+  const [selectedIdx, setSelectedidx] = useState(0);
+
+  const arrowUpPressed = useKeyPress("ArrowUp");
+  const arrowDownPressed = useKeyPress("ArrowDown");
+
+  useEffect(() => {
+    if (arrowUpPressed) {
+      const holder =
+        selectedIdx !== 0 ? selectedIdx - 1 : suggestions.length - 1;
+      setSelectedidx(holder);
+      console.log("arrowUpPressed");
+    }
+  }, [arrowUpPressed]);
+
+  useEffect(() => {
+    if (arrowDownPressed) {
+      const holder =
+        selectedIdx !== suggestions.length - 1 ? selectedIdx + 1 : 0;
+      setSelectedidx(holder);
+      console.log("arrowDownPressed");
+    }
+  }, [arrowDownPressed]);
 
   const recentlySearch =
     typeof window !== "undefined"
@@ -21,10 +49,6 @@ const Suggetions = () => {
         ? JSON.parse(localStorage.getItem("history") || "")
         : []
       : [];
-
-  const { fetchData, loading } = useFetch(`api/suggestion`, searchContent);
-
-  const suggestions: apiData[] = fetchData.suggestions;
 
   //refresh fetching
   const refreshData = () => {
@@ -61,7 +85,22 @@ const Suggetions = () => {
         <>
           {suggestions.map((item, idx) => (
             <div key={idx} className={style.suggestion_items}>
-              <p onClick={() => handleSuggestionClicked(item.text)}>
+              <p
+                className={
+                  idx === selectedIdx
+                    ? style.suggestion_active
+                    : style.suggestion_item
+                }
+                role="button"
+                aria-pressed={idx === selectedIdx}
+                tabIndex={0}
+                onClick={() => handleSuggestionClicked(item.text)}
+                onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+                  if (e.key === "Enter") {
+                    handleSuggestionClicked(item.text);
+                  }
+                }}
+              >
                 {item.text}
               </p>
               <Image className="dropdown-icon" alt="" src={SearchIcon} />
@@ -76,7 +115,24 @@ const Suggetions = () => {
               key={idx}
               className={style.suggestion_items}
             >
-              <p>{item}</p>
+              <p
+                className={
+                  idx === selectedIdx
+                    ? style.suggestion_active
+                    : style.suggestion_item
+                }
+                role="button"
+                aria-pressed={idx === selectedIdx}
+                tabIndex={0}
+                // onClick={() => handleSuggestionClicked(item)}
+                onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+                  if (e.key === "Enter") {
+                    handleSuggestionClicked(item);
+                  }
+                }}
+              >
+                {item}
+              </p>
               <Image className="dropdown-icon" alt="" src={CloseIcon} />
             </div>
           ))}
