@@ -2,7 +2,13 @@
 .page_1{
     background-color: #FCFCFF;
     height: 100vh;
-    padding:  30px 20px 30px 20px;
+    padding:  24px 16px 24px 16px;
+}
+
+.page_container{
+    background-color: #FFFF;
+    height: 100vh;
+    padding:  16px 12px 16px 12px;
 }
 
 

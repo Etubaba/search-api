@@ -7,29 +7,35 @@ import ProductToggle from "../components/ProductToggle";
 import ProductComponent from "../components/ProductComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "@/features/store";
+import Suggetions from "@/components/SearchSuggestion";
 
 export default function Home(): JSX.Element {
-
-  const searchContent:string=useSelector((state:RootState)=>state.search.search)
-  const is_searching:boolean=useSelector((state:RootState)=>state.search.is_searching)
+  const searchContent: string = useSelector(
+    (state: RootState) => state.search.search
+  );
+  const is_searching: boolean = useSelector(
+    (state: RootState) => state.search.is_searching
+  );
   return (
-    <div className={style.page_1}>
+    <div className={is_searching ? style.page_container:style.page_1}>
       <div className={style.header}>
-      { !is_searching && <Image className="menu-icon" alt="" src={MenuIcon} />}
+        {!is_searching && <Image className="menu-icon" alt="" src={MenuIcon} />}
         <SearchInput />
       </div>
+      {is_searching ? (
+        <Suggetions />
+      ) : (
+        <div>
+          <h1 className={style.title}>Find your favorite products now.</h1>
+          <div>
+            <ProductToggle />
+          </div>
 
-      <h1 className={style.title}>Find your favorite products now.</h1>
-      <div>
-        <ProductToggle />
-      </div>
-
-
-      <div>
-          <ProductComponent />
-      </div>
-
-    
+          <div>
+            <ProductComponent />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,22 @@
-.suggestion{
-    background-color: white;
-    padding: 5px;
+.suggestion_container {
+  background-color: white;
+  padding: 5px;
+}
+
+.suggest {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.suggest p {
+  color: rgba(144, 149, 166, 0.65);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 22px;
+}
+.suggest p:last-child:hover{
+color: rgba(144, 149, 166, 0.45);
 }
