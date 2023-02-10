@@ -100,7 +100,9 @@ padding: 10px;
     font-size:12px;
     line-height:14px;
     letter-spacing: -0.24px;
-    margin-bottom: 22px ;
+    margin-bottom: 5px ;
+    flex-grow: 1;
+    
 }
 
 
@@ -110,7 +112,8 @@ padding: 10px;
     line-height: 19px;
     letter-spacing: -0.24px;
     color: #17A030;
-    align-self: flex-end;
+    /* margin-top: auto; */
+    
 }
 
 
@@ -123,6 +126,26 @@ padding: 10px;
 }
 
 
+@media (min-width: 450px) and (max-width: 800px) {
+    .product_container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+            place-content: center;
+    
+        }
+
+}
+@media (min-width: 801px) and (max-width: 950px) {
+    .product_container {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.25rem;
+            place-content: center;
+    
+        }
+
+}
 @media only screen and (max-width: 450px) {
     .product_container{
     display: grid;
