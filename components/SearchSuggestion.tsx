@@ -6,7 +6,6 @@ import style from "../styles/Suggest.module.css";
 import SearchIcon from "../public/icons/Search.svg";
 import CloseIcon from "../public/icons/Close.svg";
 import useFetch from "@/hooks/useFetch";
-import { BASE_URL } from "@/constant";
 import { apiData } from "@/interface";
 import { useRouter } from "next/router";
 import useKeyPress from "@/hooks/userKeyPress";

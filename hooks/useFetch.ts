@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import { ISugestions } from "@/interface";
 
 const useFetch = (url: string, dependent: any) => {
   const [fetchData, setFetchData] = useState({ suggestions: [] });

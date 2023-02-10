@@ -22,9 +22,9 @@ const Results: React.FC<IDataProps> = ({ data }) => {
   );
 
   const handleReturnHome = () => {
+    router.push("/");
     dispatch(handleSearch(""));
     dispatch(handleSearchingState(false));
-    router.push("/");
   };
   return (
     <div className={style.result_container}>

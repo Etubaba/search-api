@@ -2,8 +2,6 @@ export interface IInitialState {
   search: string;
   is_searching: boolean;
   filter_by: string | undefined;
-
-  //   productId: string | null;
 }
 export type apiData = {
   text: string;

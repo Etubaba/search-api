@@ -15,9 +15,6 @@ import { getAllProducts } from "@/services/api";
 import { IDataProps } from "@/interface";
 
 export default function Home({ data }: IDataProps): JSX.Element {
-  const searchContent: string = useSelector(
-    (state: RootState) => state.search.search
-  );
   const is_searching: boolean = useSelector(
     (state: RootState) => state.search.is_searching
   );
@@ -59,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
     const url = Object.keys(query)[0];
     const data = await getAllProducts(url);
-    // const searchSuggestion = await getRecentSearch("");
+
     return {
       props: {
         data,
@@ -74,31 +71,3 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     };
   }
 };
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const search = context.req.cookies.products || "egg";
-
-//   const queryData = {
-//     slug: "/kategori",
-//     query: {
-//       q: search,
-//     },
-//   };
-//   //@ts-ignore
-//   const { data } = await axios.post(`${BASE_URL}slug`, queryData);
-
-//   // const res = await fetch(`${BASE_URL}slug`, {
-//   //   method: "POST",
-//   //   body: JSON.stringify(queryData),
-//   // });
-
-//   // const data = await res.json();
-
-//   console.log("is it coming", data);
-
-//   return {
-//     props: {
-//       data: data || {},
-//     },
-//   };
-// };
