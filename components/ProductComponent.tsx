@@ -21,7 +21,7 @@ const ProductComponent: React.FC<ProductComponentProps> = ({ product }) => {
       <div style={{ display: "flex", flexDirection: "column", height: "80px" }}>
         <p className="product_name">{name.substring(0, 18)}</p>
 
-        <p className="product_brand">{brand}</p>
+        <p className="product_brand">{brand.substring(0, 14)}</p>
 
         <p className="product_price">${price}</p>
       </div>

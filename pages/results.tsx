@@ -13,6 +13,7 @@ import { AppDispatch, RootState } from "@/features/store";
 import { useDispatch, useSelector } from "react-redux";
 import { NextRouter, useRouter } from "next/router";
 import { handleSearch, handleSearchingState } from "../features/searchSlice";
+import NoResult from "@/components/NoResult";
 
 const Results: React.FC<IDataProps> = ({ data }) => {
   const router: NextRouter = useRouter();
@@ -46,11 +47,17 @@ const Results: React.FC<IDataProps> = ({ data }) => {
       </div>
 
       <main style={{ padding: "0 1rem" }}>
-        <div className="product_container">
-          {data.map((product) => (
-            <ProductComponent key={product.id} product={product} />
-          ))}
-        </div>
+        {data.length === 0 ? (
+          <div>
+            <NoResult />
+          </div>
+        ) : (
+          <div className="product_container">
+            {data.map((product) => (
+              <ProductComponent key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );
